@@ -1,0 +1,154 @@
+---
+title: "Soni_M1_Project1"
+author: "Manan Soni"
+date: "1/17/2022"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## a. A scatter plot of the Sales ~ Tempareture data
+
+Scatter plot based on provided data of sales and temperature is shown(Fig.1) below.
+
+```{r}
+sales <- c(7,11,15,20,19,11,18,10,6,22) # creating Sales Vector
+temperature = c(69,81,77,84,80,97,87,70,65,90) # creating Temperature Vector
+library(ggplot2)
+ggplot(data.frame(sales,temperature), aes(x = temperature , y=sales , color = ..y..)) +
+  geom_point(size=4) +
+  labs(
+    title = "Fig.1 Sales ~ Temperature", # adds title
+    x = "Temperature (°F)", # x-axis label
+    y = "Sales\n", # y-axis label
+    color = "Sales" # color legend
+  ) + 
+  scale_color_gradient(low="pink", high="red") +
+  theme_light() +
+  theme(
+    plot.title = element_text(hjust = 0.5),
+  ) # Plotting on Scatter Graph 
+```
+
+## b. The mean temperature
+
+```{r}
+# mean(*vector to calculate mean*)
+cat('Mean of Tempareture Vector is ',mean(temperature))
+```
+
+## c. Displaying the data after manipulating **sales** vector
+
+```{r}
+sales <- c(sales[-3]) # removing 3rd element of sales
+sales
+sales <- append(sales,16,2) # inserting 16 as new 3rd element of sale
+sales
+```
+
+## d. Display the names vector
+
+```{r}
+names <- c("Tom","Dick","Harry")
+names
+```
+
+## e. Displaying the matrix of 5 row and 2 column of 10 integers
+
+``` {r}
+matrixx <- matrix(c(1:10),nrow=5,byrow=FALSE) # creating Matrix of 2 column and 5 row
+matrixx
+```
+
+## f. Display the icSales data frame
+
+```{r}
+icSales <- data.frame('Sales'= sales,'Temperature' = temperature) #LHS defines column heads in data frames
+icSales
+```
+
+## g. Display the summary of the icSales data frame
+
+`summary` is a built-in function which provide summary of a data-frame.
+
+```{r}
+icSalesSummary = summary(icSales)
+icSalesSummary
+```
+
+## h. Display the variables only from the Student.csv data set.
+
+`names` is also a built-in function to get all the variables/column heads of given.
+
+```{r}
+student_data = read.csv("./Student.csv") # Opening Student.csv file
+names(student_data) # Printing Variables of Student.csv
+```
+
+## i. A summary of the information you learned about the data sets based on the instructions you followed.
+
+```{}
+# check if package exist
+if(!require('vcd',character.only = TRUE)) install.packages('vcd')
+# importing vcd
+library(vcd)
+
+# creating Vectors
+sales <- c(7,11,15,20,19,11,18,10,6,22)
+temperature = c(69,81,77,84,80,97,87,70,65,90)
+temperature_celcius = (temperature - 32) / 1.8000
+sales
+temperature 
+
+# plotting scatter graph for sales ~ temperature
+library(ggplot2)
+ggplot(data.frame(sales,temperature), aes(x = temperature , y=sales , color = ..y..)) +
+  geom_point(size=4) +
+  labs(
+    title = "Fig.1 Sales ~ Temperature", # adds title
+    x = "Temperature (°F)", # x-axis label
+    y = "Sales\n", # y-axis label
+    color = "Sales" # color legend
+  ) + 
+  scale_color_gradient(low="pink", high="red") +
+  theme_light() +
+  theme(
+    plot.title = element_text(hjust = 0.5),
+  )
+## plot(sales,temperature)
+
+# getting mean of temperature
+mean_temperature <- mean(temperature)
+mean_temperature
+
+# Removing From Index 15
+sales <- c(sales[-3])
+sales
+# Insert 16 at 2 index
+sales <- append(sales,16,2)
+sales 
+
+# creating Vectors of String/Names
+names <- c("Tom","Dick","Harry")
+names
+
+
+matrixx <- matrix(c(1:10),nrow=5,byrow=FALSE) # creating Matrix of 2 column and 5 row
+matrixx
+
+# creating dataFrame from sales, temperature
+icSales <- data.frame('Sales'= sales,'Temperature' = temperature)
+icSales
+
+print(str(icSales))
+
+# finding summary of Data Frame
+summaryx = summary(icSales)
+summaryx
+
+
+student_data = read.csv("./Student.csv") # Opening Student.csv file
+names(student_data) # Printing Variables of Student.csv
+```

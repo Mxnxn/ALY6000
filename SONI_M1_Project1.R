@@ -1,4 +1,6 @@
+# check if package exist
 if(!require('vcd',character.only = TRUE)) install.packages('vcd')
+# importing vcd
 library(vcd)
 
 # creating Vectors
@@ -8,6 +10,20 @@ sales
 temperature 
 
 # plotting scatter graph for sales ~ temperature
+library(ggplot2)
+ggplot(data.frame(sales,temperature), aes(x = sales, y = temperature, color = ..y..)) +
+  geom_point(size=4) +
+  labs(
+    title = "Fig.1 Sales ~ Tempareture", # adds title
+    x = "Sales", # x-axis label
+    y = "Temperature (F)", # y-axis label
+    color = "Temperature" # color legend
+  ) + 
+  scale_color_gradient(low="blue", high="orange") +
+  theme_light() +
+  theme(
+    plot.title = element_text(hjust = 0.5),
+  )
 plot(sales,temperature)
 
 # getting mean of temperature
@@ -25,8 +41,8 @@ sales
 names <- c("Tom","Dick","Harry")
 names
 
-# creating Matrix of 2 column and 5 row
-matrixx <- matrix(c(1:10),nrow=5,byrow=FALSE)
+
+matrixx <- matrix(c(1:10),nrow=5,byrow=FALSE) # creating Matrix of 2 column and 5 row
 matrixx
 
 # creating dataFrame from sales, temperature
@@ -39,11 +55,9 @@ print(str(icSales))
 summaryx = summary(icSales)
 summaryx
 
-# Opening Student.csv file
-student_data = read.csv("./Student.csv")
-student_data
-# Printing Variables of Student.csv
-names(student_data)
+
+student_data = read.csv("./Student.csv") # Opening Student.csv file
+names(student_data) # Printing Variables of Student.csv
 
 
 # ref
